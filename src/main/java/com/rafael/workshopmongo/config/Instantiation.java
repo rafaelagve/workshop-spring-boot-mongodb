@@ -38,11 +38,16 @@ public class Instantiation implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
+		// Usuário aninhado no Post
 		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viagem", "Indo pra SP. Abraços", new AuthorDTO(maria));
 		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz!", new AuthorDTO(maria));
 		
 
 		postRepository.saveAll(Arrays.asList(post1, post2));
+		
+		// salvando referencias dos posts no usuario
+		maria.getPosts().addAll(Arrays.asList(post1, post2));
+		userRepository.save(maria);
 
 	}
 
