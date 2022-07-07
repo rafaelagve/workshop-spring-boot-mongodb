@@ -69,6 +69,7 @@ public class UserResource {
 		
 		return ResponseEntity.noContent().build();
 	}
+	
 	@GetMapping(value="/{id}/posts")
 	public ResponseEntity<List<Post>> findByPosts(@PathVariable String id)
 	{
