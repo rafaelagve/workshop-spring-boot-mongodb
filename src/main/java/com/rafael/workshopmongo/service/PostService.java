@@ -1,12 +1,12 @@
 package com.rafael.workshopmongo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rafael.workshopmongo.domain.Post;
-import com.rafael.workshopmongo.domain.User;
 import com.rafael.workshopmongo.repository.PostRepository;
 import com.rafael.workshopmongo.service.exception.ObjectNotFoundException;
 
@@ -21,6 +21,14 @@ public class PostService {
 		Optional <Post> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado"));	
 	}
+	
+	public List<Post> findByTitle(String text)
+	{
+		//return repo.findByTitleContainingIgnoreCase(text);
+		return repo.searchTitle(text);
+	}
+	
+	
 	
 
 }
